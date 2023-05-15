@@ -2,15 +2,14 @@ import axios from 'axios';
 
 const API_KEY = 'fe68a482e954b682bc3ac9605588cebc';
 
-const getWeatherData = async (query) => {
+const getWeatherData = async (city) => {
   try {
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=London&appid=${API_KEY}`;
-
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
     const response = await axios.get(url);
 
     // Handle the response data
-      // console.log(response.data.weather.icon);
+
     console.log(response.data);
 
     // Return the data or perform additional operations
@@ -21,6 +20,5 @@ const getWeatherData = async (query) => {
     throw error;
   }
 };
-
 
 export default getWeatherData;
