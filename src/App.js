@@ -6,18 +6,27 @@ import WeatherCard from './WeatherCard';
 import getWeatherData from './api';
 
 function App() {
-  const [weather, setWeather] = useState(null); // Initialize weather state as null
+  const [weather, setWeather] = useState(''); // Initialize weather state as null
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (city) => {
-    const result = await getWeatherData(city);
-    setWeather(result);
+    try {
+      const result = await getWeatherData(city);
+      setWeather(result);
+      setError(null);
+    } catch (error) {
+      setWeather(null);
+      setError('Location or city not found');
+    }
+
   };
 
   return (
     <div className='App'>
-      <h2>AGMOSPHERE</h2>
+      <h2 className='mb-5'>FORECAST AI</h2>
       <SearchBar onSubmit={handleSubmit} />
-      {weather && <WeatherCard weather={weather} />} {/* Render WeatherCard only if weather is truthy */}
+      <p className='fw-bolder text-danger text-warning'>{error}</p>
+      {weather && <WeatherCard weather={weather} />}
     </div>
   );
 }

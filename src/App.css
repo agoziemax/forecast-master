@@ -1,8 +1,14 @@
 
 
 .App{
+  background-image: url(./breno-machado-in9-n0JwgZ0-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  justify-content: center;
+  padding: 20px;
   align-items: center;
   flex-direction: column;
+  color: white;
 }

@@ -14,10 +14,11 @@ const getWeatherData = async (city) => {
 
     // Return the data or perform additional operations
     return response.data;
+    
   } catch (error) {
     // Handle any errors
     console.error(error);
-    throw error;
+    throw 'City not found';
   }
 };
 

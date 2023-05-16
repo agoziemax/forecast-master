@@ -1,28 +1,39 @@
-import React from 'react'
-import './styles/weatherCard.css'
+import React from 'react';
+import './styles/weatherCard.css';
 
-function WeatherCard({weather}) {
+function WeatherCard({ weather }) {
+ 
 
-  if (weather === "") {
-    return <div>Loading...</div>; // Add a loading state or message
-  }
+  const {
+    sys: { country },
+    name: city,
+    main: { temp, humidity, temp_max, temp_min},
+    weather: [{ description, main, icon }],
+  } = weather;
+  const iconUrl = `http://openweathermap.org/img/w/${icon}.png`;
 
-  const country = weather.sys.country;
   return (
     <div>
-      <div className='weather-card d-flex justify-content-between '>
+      <div className='weather-card d-flex justify-content-between mt-5 '>
         <div className=''>
           <h2>
-            {country}
+            {city}, {country}
           </h2>
-          <p></p>
+          <h3>{temp}°C</h3>
+          <p>
+            {main} - {description}
+          </p>
+
+          <img src={iconUrl} alt='Weather Icon' />
         </div>
         <div className=' d-flex flex-column'>
-          <p>20</p>
+          <p>Humidity: {humidity}%</p>
+          <p>Temp Max: {temp_max}°C</p>
+          <p>Temp Min: {temp_min}°C</p>
         </div>
       </div>
     </div>
   );
 }
 
-export default WeatherCard
+export default WeatherCard;
